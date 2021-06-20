@@ -43,7 +43,7 @@ function addSubmission(array, newName, newScore, newDate) {
     };
     array.push(newEntry);
 };
-addSubmission(submissions, "Jim", 78, '2021-06-18');
+addSubmission(submissions, "Jim", 45, '2021-06-18');
 
 /* Declare a function named deleteSubmissionByIndex
     - Parameter(s): array, index
@@ -52,6 +52,7 @@ addSubmission(submissions, "Jim", 78, '2021-06-18');
 function deleteSubmissionByIndex(array, index) {
     array.splice([index],1);
 };
+deleteSubmissionByIndex(submissions, 1); // Remove Joe
 
 /* Declare a function named deleteSubmissionByName
     - Parameter(s): array, name
@@ -63,18 +64,20 @@ function deleteSubmissionByName(array, studentName) {
         });
     array.splice(removeIt,1);
 };
+deleteSubmissionByName(submissions, "Jane"); // Remove Jane
 
 /* Declare a function named editSubmission
     - Parameter(s): array, index, score
     - Functionality: update an object’s score in the array at the specified index. Use conditional statements to set the value for the passed property to true if the score is greater than or equal to 60 and false otherwise. */
 function editSubmission(array, index, score) {
-    array[index].score = 91;
+    array[index].score = score;
     if (array[index].score >= 60) {
         array[index].passed = true;
     } else {
         array[index].passed = false;
     };
 };
+editSubmission(submissions,0, 91); // update Jacks score
 
 /* Declare a function named findSubmissionByName
     - Parameter(s): array, name
@@ -83,6 +86,7 @@ function editSubmission(array, index, score) {
 function findSubmissionByName(array, name) {
     return array.find(student => student.name = name);   
 };
+console.log(findSubmissionByName(submissions, "Jack"));
 
 /* Declare a function named findLowestScore
     - Parameter(s): array
@@ -98,3 +102,49 @@ function findLowestScore(array) {
     });
     console.log(min_value);
 };
+console.log(findLowestScore(submissions));
+
+
+/* Declare a function named findAverageScore
+    - Parameter(s): array
+    - Functionality: return the average quiz score.  Use a for...of loop. */
+function findAverageScore(array) {
+    var count = 0, sumScore = 0;
+    for (var key in array) {
+        if (array.hasOwnProperty(key)) {
+            if (array[key].hasOwnProperty("score")) {
+            sumScore += array[key].score;
+            count += 1;
+            }
+        }
+    }
+
+    console.log(sumScore/count); 
+};
+findAverageScore(submissions);
+
+
+
+/* Declare a function named filterPassing
+    - Parameter(s): array
+    - Functionality: return a new array using the filter method. The filter method should find objects in the array that have passing scores. */
+function filterPassing(array) {
+    let newArray = array.filter(function(student){
+        return student.passed = true;
+    }); 
+    console.log(newArray)
+};
+filterPassing(submissions);
+
+/* Declare a function named filter90AndAbove
+    - Parameter(s): array
+    -Functionality: return a new array using the filter method. The filter method should find objects in the array that have scores greater than or equal to 90. */
+function filter90AndAbove(array) {
+    let newArray = array.filter(function(student){
+        return student.score >= 90;
+    });
+    console.log(newArray);
+};
+filter90AndAbove(submissions);
+
+
