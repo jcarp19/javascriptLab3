@@ -89,35 +89,12 @@ function findSubmissionByName(array, name) {
     - Functionality: return the object in the array that has the lowest score. Use the forEach method to loop through the whole array. */
 function findLowestScore(array) {
     
-    let min_value = Infinity;
+    let min_value = 100;
+
     array.forEach(element => {
-        if ("score" < min_value)
-        min_value = element;
+        var x = element.score;
+        if (x < min_value)
+        min_value = x;
     });
     console.log(min_value);
 };
-
-
-
-let numbers_array = [1,2,3,4,5]
-
-let max_value = -Infinity
-let min_value = Infinity
-
-numbers_array.forEach(element => {
-   
-   // find minimum value
-    if (element < min_value)
-    min_value = element
-                
-    // find maximum value
-    if (element > max_value)
-    max_value = element
-
-})
-
-console.log(max_value)
-// result => 5
-
-console.log(min_value)
-// result => 1
